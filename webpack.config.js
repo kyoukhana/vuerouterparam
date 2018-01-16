@@ -9,7 +9,7 @@ module.exports = {
     ],
     output: {
         path: path.resolve('public/js'),
-        publicPath: 'http://www.vuerouterparms.com/public/js/',
+        publicPath: '/public/js/',
         filename: "main.js"
     },
     module: {

@@ -3,7 +3,17 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-var router = new VueRouter();
+/*Define Router */
+const router = new VueRouter({
+    hashbang: false,
+    linkActiveClass: 'active',
+    mode: 'history',
+
+    scrollBehavior (to, from, savedPosition) {
+        var maincontent = document.getElementsByTagName("main")[0];
+        maincontent.scrollTop=0;
+    }
+});
 
 router.map({
     '/': {
@@ -22,7 +32,7 @@ router.map({
                 component: (resolve) => { require(['./components/views/users/view.vue'], resolve); }
             },
 
-            '/edit:userid':{
+            '/edit/:userid':{
                 name:"edituser",
                 userid:'',
                 component: (resolve) => { require(['./components/views/users/edit.vue'], resolve); }
