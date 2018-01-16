@@ -1,4 +1,4 @@
-
+var webpack = require('webpack');
 var path = require("path");
 
 
@@ -12,23 +12,38 @@ module.exports = {
         publicPath: '/public/js/',
         filename: "main.js"
     },
+
+
+    plugins: [
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        })
+    ],
     module: {
-        loaders: [
+        rules: [
+          {
+            test: /\.js$/,
+            use: ["babel-loader"],
+            exclude: /node_modules/
+          },
             {
-                test: /\.js$/,
-                loader: 'babel',
-                exclude: /node_modules/
+                test: /\.(png|jpg|gif|svg|ttf)$/,
+                loader: 'url-loader',
+                query: {
+                    name: '[name].[ext]?[hash]'
+                }
             },
+
             {
                 test: /\.vue$/,
-                loader: 'vue'
+                loader: 'vue-loader',
             }
+
         ]
     },
-    vue: {
-        loaders: {
-            js: 'babel-loader'
-        }
-    }
 }
+
+
 

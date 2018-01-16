@@ -1,8 +1,10 @@
 <template>
+   <div class='root'>
     <h1>Edit User</h1>
     <p>
         Edit User Content
     </p>
+    </div>
 </template>
 
 <script>
